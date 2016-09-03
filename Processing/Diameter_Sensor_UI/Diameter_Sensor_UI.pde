@@ -1,6 +1,8 @@
   
 //Diameter sensor UI by Matt Rogge August 25, 2016
- 
+//todo
+// - Draw vertical lines where the diameter is 
+// - receive diameter measurements and edges
 import processing.serial.*; 
 import org.gicentre.utils.stat.*;    // For chart classes.
 
@@ -87,8 +89,8 @@ void serialEvent(Serial p) {
   try{
   inString = p.readString(); 
   if (vals != null){
-    print("before split tokens: ");
-    println(dataY.length);  
+    //print("before split tokens: ");
+    //println(dataY.length);  
     
     vals = float(split(inString, ' '));//splitTokens(inString);
     //println("Contents of vals");
@@ -98,22 +100,22 @@ void serialEvent(Serial p) {
     //}
     //println("");
     
-    print("after split tokens: ");
-    println(vals.length);
+    //print("after split tokens: ");
+    //println(vals.length);
     
     if (vals.length > 256){
-      println("Shortening");
+      //println("Shortening");
       for (int i = 0; i<vals.length-256;i++){
         dataY = shorten(vals);
       }
     } else if (vals.length < 256) {
-      println("Lengthening");
+      //println("Lengthening");
       for (int i = 0;i<256-vals.length;i++){
         dataY = append(vals, 0.0);
       }
     }
-    print("final length: ");
-    println(dataY.length);
+    //print("final length: ");
+    //println(dataY.length);
     //println("Contents of dataY");
     //for (int i=0; i<dataY.length; i++){
     //  print(dataY[i]);
